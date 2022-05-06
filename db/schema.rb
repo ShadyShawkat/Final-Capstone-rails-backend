@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_06_195917) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_06_200533) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_06_195917) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "room_id", null: false
+    t.index ["room_id"], name: "index_hotel_rooms_on_room_id"
   end
 
   create_table "hotels", force: :cascade do |t|
@@ -63,5 +65,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_06_195917) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "hotel_rooms", "rooms"
   add_foreign_key "hotels", "users"
 end
