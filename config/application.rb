@@ -11,6 +11,14 @@ module FinalCapstoneRailsBackend
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.before_configuration do
+      env_file = File.join(Rails.root, 'config', 'local_env.yml')
+      if File.exist?(env_file)
+        YAML.load(File.open(env_file)).each do |key, value|
+          ENV[key.to_s] = value
+        end
+      end
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
