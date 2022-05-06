@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_06_201632) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_06_203708) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_06_201632) do
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "hotel_room_id", null: false
+    t.index ["hotel_room_id"], name: "index_reservations_on_hotel_room_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "type"
     t.datetime "created_at", null: false
@@ -70,4 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_06_201632) do
   add_foreign_key "hotel_rooms", "hotels"
   add_foreign_key "hotel_rooms", "rooms"
   add_foreign_key "hotels", "users"
+  add_foreign_key "reservations", "hotel_rooms"
+  add_foreign_key "reservations", "users"
 end
