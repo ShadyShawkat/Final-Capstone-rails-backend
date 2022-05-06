@@ -110,6 +110,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.5-x64-mingw-ucrt)
       racc (~> 1.4)
+    nokogiri (1.13.5-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.13.5-x86_64-linux)
       racc (~> 1.4)
     pg (1.3.5)
@@ -163,6 +165,7 @@ GEM
 
 PLATFORMS
   x64-mingw-ucrt
+  x86_64-darwin-20
   x86_64-linux
 
 DEPENDENCIES
