@@ -1,10 +1,9 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservations, only: %i[index create destroy]
-  before_action :authenticate_user!
+  before_action :set_reservations, only: %i[create destroy]
 
   # GET /reservations
   def index
-    @reservations = Reservation.where(user_id => current_user.id)
+    @reservations = Reservation.where(user_id => @current_user.id)
 
     render json: @reservations
   end
