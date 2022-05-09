@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reservations_controllers
   devise_for :users,
              controllers: {
                  sessions: 'users/sessions',
