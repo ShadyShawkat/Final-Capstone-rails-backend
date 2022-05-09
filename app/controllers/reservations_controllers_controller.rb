@@ -3,14 +3,14 @@ class ReservationsControllersController < ApplicationController
 
   # GET /reservations
   def index
-    @reservations = Reservations.all
+    @reservations = Reservation.where(user_id => current_user.id)
 
     render json: @reservations
   end
 
   # POST /reservations
   def create
-    @reservations = ReservationsController.new(reservations_params)
+    @reservations = Reservation.new(reservations_params)
 
     if @reservations.save
       render json: @reservations, status: :created, location: @reservations
@@ -27,7 +27,7 @@ class ReservationsControllersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reservations
-      @reservations = ReservationsController.find(params[:id])
+      @reservations = Reservation.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
