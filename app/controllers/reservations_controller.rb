@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservations, only: %i[ show create destroy ]
+  before_action :set_reservations, only: %i[ index create destroy ]
+  before_action :authenticate_user!
 
   # GET /reservations
   def index

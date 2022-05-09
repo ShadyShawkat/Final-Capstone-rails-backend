@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :reservations_controllers
+  resources :reservations, only: [:index, :create, :destroy]
   devise_for :users,
              controllers: {
                  sessions: 'users/sessions',
