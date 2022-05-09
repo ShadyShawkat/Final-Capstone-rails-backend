@@ -30,11 +30,6 @@ module FinalCapstoneRailsBackend
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
-    config.session_store :cookie_store, key: '_interslice_session'
-
-    config.middleware.use ActionDispatch::Cookies
-
-    config.middleware.use config.session_store, config.session_options
 
     config.api_only = true
   end
