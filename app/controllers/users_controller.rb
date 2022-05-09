@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
-  before_action :set_user, only: [:show, :destroy]
+  before_action :set_user, only: %i[show destroy]
 
-  # GET /users 
+  # GET /users
   def index
     @users = User.all
     render json: @users, status: :ok
@@ -18,25 +18,26 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render json: "User created successfully", status: :created
+      render json: 'User created successfully', status: :created
     else
       render json: { errors: @user.errors.full_messages },
-        status: :unprocessable_entity
+             status: :unprocessable_entity
     end
   end
 
-  #DELETE /users/:id
+  # DELETE /users/:id
   def destroy
     @user.destroy
     head :no_content
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    def user_params
-      params.permit(:name, :email, :password, :profile_picture, :admin)
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.permit(:name, :email, :password, :profile_picture, :admin)
+  end
 end
