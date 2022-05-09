@@ -1,5 +1,5 @@
 class HotelsController < ApplicationController
-  before_action :set_hotel, only: %i[show, destroy]
+  before_action :set_hotel, only: %i[show destroy]
   before_action :hotel_params, only: %i[create]
   before_action :rooms_params, only: %i[create]
 
@@ -17,10 +17,13 @@ class HotelsController < ApplicationController
   # POST /hotels
   def create
     hotel = @current_user.hotels.new(hotel_params)
-    
+
     rooms = params[:rooms]
     rooms.each do |room|
-      hotel_room = hotel.hotel_rooms.new(room_id: room['id'], image: room['image'], price: room['price']) if Room.find(room['id'])
+      if Room.find(room['id'])
+        hotel.hotel_rooms.new(room_id: room['id'], image: room['image'],
+                              price: room['price'])
+      end
     end
 
     if hotel.save
@@ -48,7 +51,6 @@ class HotelsController < ApplicationController
     params.require(:hotel).permit(:name, :description, :rating, :image, :location)
   end
 
-  
   def rooms_params
     params.permit(rooms: [])
   end
