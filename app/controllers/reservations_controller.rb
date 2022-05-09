@@ -1,4 +1,4 @@
-class ReservationsControllersController < ApplicationController
+class ReservationsController < ApplicationController
   before_action :set_reservations, only: %i[ show create destroy ]
 
   # GET /reservations
