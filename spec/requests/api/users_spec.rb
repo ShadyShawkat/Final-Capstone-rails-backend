@@ -1,10 +1,6 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/users', type: :request do
-  # before do
-  #   post users_path({ name: 'Whatever', email: 'a@gmail.com', password: '123456' })
-  # end
-
   path '/users' do
     post 'creates an user successfully' do
       tags 'Users'
@@ -28,30 +24,38 @@ RSpec.describe 'api/users', type: :request do
     end
   end
 
-  # describe 'POST /auth/login' do
-  #   before do
-  #     post auth_login_path({ email: 'a@gmail.com', password: '123456' })
-  #   end
+  path '/auth/login' do
+    post 'logs in an existing user' do
+      tags 'Users'
+      consumes 'application/json'
+      parameter name: :user, in: :body, schema: {
+        type: :object,
+        properties: {
+          email: { type: :string },
+          password: { type: :string }
+        },
+        required: [ 'email', 'password' ]
+      }
 
-  #   it 'logs in an existent user successfully' do
-  #     expect(JSON.parse(response.body)).to have_key('token')
-  #   end
+      response '200', 'user logged in' do
+        let(:user) { { email: 'admin@gmail.com', password: 'admin' } }
+        run_test!
+      end
+    end
+  end
 
-  #   it 'returns a 200 status' do
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+  path '/users/{id}' do
+    delete 'deletes an existing user' do
+      tags 'Users'
+      consumes 'application/json'
+      produces 'application/json'
+      security [bearer_auth: []]
+      parameter name: :Authorization, in: :header, type: :string
+      parameter name: :id, in: :path, type: :integer
 
-  # describe 'DELETE users/:id' do
-  #   before do
-  #     post auth_login_path({ email: 'a@gmail.com', password: '123456' })
-  #     @token = JSON.parse(response.body)['token']
-  #     delete '/users/3', params: { email: 'a@gmail.com', password: '123456' },
-  #                        headers: { Authorization: "Bearer #{@token}" }
-  #   end
-
-  #   it 'deletes a user successfully' do
-  #     expect(response).to have_http_status(:no_content)
-  #   end
-  # end
+      response(200, 'success') do
+        run_test!
+      end
+    end
+  end
 end

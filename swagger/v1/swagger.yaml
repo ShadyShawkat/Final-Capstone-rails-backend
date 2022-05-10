@@ -33,6 +33,48 @@ paths:
               - name
               - email
               - password
+  "/auth/login":
+    post:
+      summary: logs in an existing user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user logged in
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+  "/users/{id}":
+    delete:
+      summary: deletes an existing user
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: success
 servers:
 - url: https://{defaultHost}
   variables:
