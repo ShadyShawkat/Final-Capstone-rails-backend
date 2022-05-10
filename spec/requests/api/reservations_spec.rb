@@ -30,4 +30,30 @@ RSpec.describe 'api/reservations', type: :request do
       end
     end
   end
+
+  path '/reservations/{id}' do
+    get('gets a reservation') do
+      tags 'Reservation'
+      consumes 'application/json'
+      produces 'application/json'
+      security [bearer_auth: []]
+      parameter name: :Authorization, in: :header, type: :string
+      parameter name: :id, in: :path, type: :integer
+      response(200, 'successful') do
+        run_test!
+      end
+    end
+
+    delete('deletes a reservation') do
+      tags 'Resrvation'
+      consumes 'application/json'
+      produces 'application/json'
+      security [bearer_auth: []]
+      parameter name: :Authorization, in: :header, type: :string
+      parameter name: :id, in: :path, type: :integer
+      response(200, 'successful') do
+        run_test!
+      end
+    end
+  end
 end
