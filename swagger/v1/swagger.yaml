@@ -88,6 +88,80 @@ paths:
       responses:
         '200':
           description: successful
+  "/reservations":
+    get:
+      summary: List reservations
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Creates a reservation successfully
+      tags:
+      - Reservations
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '201':
+          description: reservation created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: date
+                hotel_room_id:
+                  type: integer
+                user_id:
+                  type: integer
+              required:
+              - date
+              - hotel_room_id
+  "/reservations/{id}":
+    get:
+      summary: gets a reservation
+      tags:
+      - Reservation
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: deletes a reservation
+      tags:
+      - Resrvation
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
   "/users":
     post:
       summary: creates an user successfully
