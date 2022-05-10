@@ -23,5 +23,24 @@ RSpec.describe 'Hotels', type: :request do
     hotel = JSON.parse(response.body)
     expect(hotel['name']).to eq("The Ritz Hotel")
   end
-  
+
+  it "create a new hotel" do
+    new_hotel = {
+      "name": "new",
+      "location": "Germany",
+      "description": "nice place",
+      "rating": 4,
+      "image": "Hotel image",
+      "rooms": [
+          {
+              "id": 1,
+              "price": 400,
+              "image": "Room image"
+          }
+      ]
+    }
+    post '/hotels', params: new_hotel, headers: { Authorization: "Bearer #{@token}" }
+    expect(response).to have_http_status(:success)
+  end
+
 end
