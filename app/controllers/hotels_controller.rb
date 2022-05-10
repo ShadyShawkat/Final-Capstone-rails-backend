@@ -11,7 +11,8 @@ class HotelsController < ApplicationController
 
   # GET /hotels/id
   def show
-    render json: Hotel.includes(hotel_rooms: [:room]).find(@hotel.id).as_json(include: { hotel_rooms: { include: :room } })
+    render json: Hotel.includes(hotel_rooms: [:room]).find(@hotel.id)
+      .as_json(include: { hotel_rooms: { include: :room } })
   end
 
   # POST /hotels
