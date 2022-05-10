@@ -22,4 +22,10 @@ RSpec.describe 'reservations_controller', type: :request do
     json = JSON.parse(response.body)
     expect(json.first['date']).to eq('2022-05-11')
   end
+
+  it 'DELETE delete' do
+    post '/reservations', params: {date: '2022-05-10', hotel_room_id: 1}, headers: { Authorization: "Bearer #{@token}" }
+    delete "/reservations/1", params: {}, headers: { Authorization: "Bearer #{@token}" }
+    expect(response).to have_http_status(:ok)
+  end
 end
