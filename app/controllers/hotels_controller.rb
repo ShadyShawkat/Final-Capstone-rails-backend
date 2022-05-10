@@ -11,7 +11,7 @@ class HotelsController < ApplicationController
 
   # GET /hotels/id
   def show
-    render json: @hotel
+    render json: Hotel.includes(hotel_rooms: [:room]).find(@hotel.id).as_json(include: { hotel_rooms: { include: :room } })
   end
 
   # POST /hotels
@@ -36,7 +36,7 @@ class HotelsController < ApplicationController
   # DELETE /hotels/1
   def destroy
     @hotel.destroy
-    render json: 'Hotel deleted successfully', status: 200
+    render json: 'Hotel deleted successfully'
   end
 
   private
@@ -48,7 +48,7 @@ class HotelsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def hotel_params
-    params.require(:hotel).permit(:name, :description, :rating, :image, :location)
+    params.permit(:name, :description, :rating, :image, :location)
   end
 
   def rooms_params
