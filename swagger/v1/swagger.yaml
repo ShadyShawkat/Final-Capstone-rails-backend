@@ -4,6 +4,90 @@ info:
   title: API V1
   version: v1
 paths:
+  "/hotels":
+    get:
+      summary: list hotels
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: creates a hotel successfully
+      tags:
+      - Hotels
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '201':
+          description: hotel created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: text
+                rating:
+                  type: integer
+                image:
+                  type: string
+                location:
+                  type: string
+                user_id:
+                  type: string
+              required:
+              - name
+              - description
+              - rating
+              - image
+              - location
+              - user_id
+  "/hotels/{id}":
+    get:
+      summary: gets a hotel
+      tags:
+      - Hotels
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: deletes a hotel
+      tags:
+      - Hotels
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
   "/users":
     post:
       summary: creates an user successfully

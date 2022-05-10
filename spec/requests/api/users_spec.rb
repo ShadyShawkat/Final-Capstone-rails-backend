@@ -18,7 +18,7 @@ RSpec.describe 'api/users', type: :request do
           image: { type: :string },
           admin: { type: :boolean }
         },
-        required: [ 'name', 'email', 'password' ]
+        required: %w[name email password]
       }
 
       response '201', 'user created' do
