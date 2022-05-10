@@ -18,4 +18,10 @@ RSpec.describe 'Hotels', type: :request do
     expect(hotels.length).to be(2)
   end
 
+  it "return a specific hotel" do
+    get '/hotels/1', params: {}, headers: { Authorization: "Bearer #{@token}" }
+    hotel = JSON.parse(response.body)
+    expect(hotel['name']).to eq("The Ritz Hotel")
+  end
+  
 end
