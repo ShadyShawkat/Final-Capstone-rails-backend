@@ -3,8 +3,11 @@ require 'swagger_helper'
 RSpec.describe 'api/reservations', type: :request do
   path '/reservations' do
     get('List reservations') do
+      tags 'Reservations'
       consumes 'application/json'
       produces 'application/json'
+      security [Bearer: {}]
+      parameter name: :Authorization, in: :header, type: :string
       response(200, 'successful') do
         run_test!
       end
@@ -14,7 +17,7 @@ RSpec.describe 'api/reservations', type: :request do
       tags 'Reservations'
       consumes 'application/json'
       produces 'application/json'
-      security [bearer_auth: []]
+      security [Bearer: {}]
       parameter name: :Authorization, in: :header, type: :string
       parameter name: :reservation, in: :body, schema: {
         type: :object,
@@ -32,23 +35,11 @@ RSpec.describe 'api/reservations', type: :request do
   end
 
   path '/reservations/{id}' do
-    get('gets a reservation') do
+    delete('Deletes a reservation') do
       tags 'Reservation'
       consumes 'application/json'
       produces 'application/json'
-      security [bearer_auth: []]
-      parameter name: :Authorization, in: :header, type: :string
-      parameter name: :id, in: :path, type: :integer
-      response(200, 'successful') do
-        run_test!
-      end
-    end
-
-    delete('deletes a reservation') do
-      tags 'Resrvation'
-      consumes 'application/json'
-      produces 'application/json'
-      security [bearer_auth: []]
+      security [Bearer: {}]
       parameter name: :Authorization, in: :header, type: :string
       parameter name: :id, in: :path, type: :integer
       response(200, 'successful') do
