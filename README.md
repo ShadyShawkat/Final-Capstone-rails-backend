@@ -3,6 +3,13 @@
 
 > This is a Rails API app that is consumed by the Microvago web app to reserve hotel rooms all around the globe
 
+### Entity Relationship Diagram (ERD) of Microvago API
+
+
+![ERD](https://user-images.githubusercontent.com/34578631/167898748-3eb6b504-6823-4b3f-a4ce-b3dbc91c2fd3.png)
+
+
+
 ## Built With
 - Ruby on Rails
 - Rubocop
