@@ -28,9 +28,17 @@ git@github.com:ShadyShawkat/Final-Capstone-rails-backend.git
 ~~~
 2. Open the project folder with VSCode or any Editor.
 3. Open terminal and navigate to the project folder.
-4. Run `gem install`, `bundle install` and `npm install` to install all of the project's required dependencies.
-5. Run `rails s` to start the project's live server and take a look at the terminal to see the URL address it is running on.
-6. If you want to run some unit tests, all you need to do is run the `rspec` command on your terminal after [installing](https://github.com/rspec/rspec-rails) `rspec-rails`
+4. Make sure that your PostgreSQL server is running and you have the ability to establish connection with the database.
+5. Create a new file called `local_env.yml` in the folder `config/` and paste the following code in it:
+  > `PG_USERNAME: "YourPostgresUsername"`<br> `PG_PASSWORD: "YourPostgresPassword"` <br> `GMAIL_USERNAME: "YourGmailSenderUsername"`<br> `GMAIL_PASS: "YourGmailSenderPassword"`<br>
+  > Note:<br> You can use your own gmail account to send emails but first you have to configure 2-Step Authorization and after that you have to configure
+  > an APP Password for this specific application. If you want more information about this, GOOGLE IT.
+6. Execute `rails db:create` to create the database.
+7. Execute `rails db:migrate` to migrate the database.
+8. Execute `rails db:seed` to migrate the database.
+9. Run `gem install`, `bundle install` and `npm install` to install all of the project's required dependencies.
+10. Run `rails s` to start the project's live server and take a look at the terminal to see the URL address it is running on.
+11. If you want to run some unit tests, all you need to do is run the `rspec` command on your terminal after [installing](https://github.com/rspec/rspec-rails) `rspec-rails`
 
 ## Authors
 
