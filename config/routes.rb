@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :hotels, only: [:index, :show, :create, :destroy]
 
 
-  root "hotels#index"
+  root to: redirect("/api-docs", status: 302)
 end
