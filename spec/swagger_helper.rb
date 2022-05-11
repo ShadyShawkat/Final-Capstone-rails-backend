@@ -25,7 +25,7 @@ RSpec.configure do |config|
           url: 'https://{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+              default: 'https://microvago.herokuapp.com/'
             }
           }
         }
