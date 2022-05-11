@@ -136,7 +136,8 @@ paths:
           type: object
           properties:
             date:
-              type: date
+              type: string
+              format: datetime
             hotel_room_id:
               type: integer
             user_id:

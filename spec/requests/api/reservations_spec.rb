@@ -21,7 +21,7 @@ RSpec.describe 'api/reservations', type: :request do
       parameter name: :Authorization, in: :header, type: :string
       parameter name: :reservation, in: :body, schema: {
         type: :object,
-        properties: { date: { type: :date }, hotel_room_id: { type: :integer }, user_id: { type: :integer } },
+        properties: { date: { type: :string, format: :datetime }, hotel_room_id: { type: :integer }, user_id: { type: :integer } },
         required: %w[date hotel_room_id]
       }
 
