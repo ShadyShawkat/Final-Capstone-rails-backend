@@ -1,5 +1,5 @@
 ---
-openapi: 3.0.1
+swagger: '2.0'
 info:
   title: API V1
   version: v1
@@ -7,6 +7,10 @@ paths:
   "/hotels":
     get:
       summary: list hotels
+      consumes:
+      - application/json
+      produces:
+      - application/json
       responses:
         '200':
           description: successful
@@ -14,58 +18,62 @@ paths:
       summary: creates a hotel successfully
       tags:
       - Hotels
+      consumes:
+      - application/json
+      produces:
+      - application/json
       security:
       - bearer_auth: []
       parameters:
       - name: Authorization
         in: header
+        type: string
+      - name: hotel
+        in: body
         schema:
-          type: string
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: text
+            rating:
+              type: integer
+            image:
+              type: string
+            location:
+              type: string
+            user_id:
+              type: string
+          required:
+          - name
+          - description
+          - rating
+          - image
+          - location
+          - user_id
       responses:
         '201':
           description: hotel created
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                description:
-                  type: text
-                rating:
-                  type: integer
-                image:
-                  type: string
-                location:
-                  type: string
-                user_id:
-                  type: string
-              required:
-              - name
-              - description
-              - rating
-              - image
-              - location
-              - user_id
   "/hotels/{id}":
     get:
       summary: gets a hotel
       tags:
       - Hotels
+      consumes:
+      - application/json
+      produces:
+      - application/json
       security:
       - bearer_auth: []
       parameters:
       - name: Authorization
         in: header
-        schema:
-          type: string
+        type: string
       - name: id
         in: path
+        type: integer
         required: true
-        schema:
-          type: integer
       responses:
         '200':
           description: successful
@@ -73,24 +81,38 @@ paths:
       summary: deletes a hotel
       tags:
       - Hotels
+      consumes:
+      - application/json
+      produces:
+      - application/json
       security:
       - bearer_auth: []
       parameters:
       - name: Authorization
         in: header
-        schema:
-          type: string
+        type: string
       - name: id
         in: path
+        type: integer
         required: true
-        schema:
-          type: integer
       responses:
         '200':
           description: successful
   "/reservations":
     get:
       summary: List reservations
+      tags:
+      - Reservations
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      security:
+      - Bearer: {}
+      parameters:
+      - name: Authorization
+        in: header
+        type: string
       responses:
         '200':
           description: successful
@@ -98,67 +120,52 @@ paths:
       summary: Creates a reservation successfully
       tags:
       - Reservations
+      consumes:
+      - application/json
+      produces:
+      - application/json
       security:
-      - bearer_auth: []
+      - Bearer: {}
       parameters:
       - name: Authorization
         in: header
+        type: string
+      - name: reservation
+        in: body
         schema:
-          type: string
+          type: object
+          properties:
+            date:
+              type: date
+            hotel_room_id:
+              type: integer
+            user_id:
+              type: integer
+          required:
+          - date
+          - hotel_room_id
       responses:
         '201':
           description: reservation created
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                date:
-                  type: date
-                hotel_room_id:
-                  type: integer
-                user_id:
-                  type: integer
-              required:
-              - date
-              - hotel_room_id
   "/reservations/{id}":
-    get:
-      summary: gets a reservation
+    delete:
+      summary: Deletes a reservation
       tags:
       - Reservation
+      consumes:
+      - application/json
+      produces:
+      - application/json
       security:
-      - bearer_auth: []
+      - Bearer: {}
       parameters:
       - name: Authorization
         in: header
-        schema:
-          type: string
+        type: string
       - name: id
         in: path
+        type: integer
         required: true
-        schema:
-          type: integer
-      responses:
-        '200':
-          description: successful
-    delete:
-      summary: deletes a reservation
-      tags:
-      - Resrvation
-      security:
-      - bearer_auth: []
-      parameters:
-      - name: Authorization
-        in: header
-        schema:
-          type: string
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
       responses:
         '200':
           description: successful
@@ -167,69 +174,73 @@ paths:
       summary: creates an user successfully
       tags:
       - Users
-      parameters: []
+      consumes:
+      - application/json
+      parameters:
+      - name: user
+        in: body
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            password:
+              type: string
+            image:
+              type: string
+            admin:
+              type: boolean
+          required:
+          - name
+          - email
+          - password
       responses:
         '201':
           description: user created
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                email:
-                  type: string
-                password:
-                  type: string
-                image:
-                  type: string
-                admin:
-                  type: boolean
-              required:
-              - name
-              - email
-              - password
   "/auth/login":
     post:
       summary: logs in an existing user
       tags:
       - Users
-      parameters: []
+      consumes:
+      - application/json
+      parameters:
+      - name: user
+        in: body
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+            password:
+              type: string
+          required:
+          - email
+          - password
       responses:
         '200':
           description: user logged in
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                password:
-                  type: string
-              required:
-              - email
-              - password
   "/users/{id}":
     delete:
       summary: deletes an existing user
       tags:
       - Users
+      consumes:
+      - application/json
+      produces:
+      - application/json
       security:
       - bearer_auth: []
       parameters:
       - name: Authorization
         in: header
-        schema:
-          type: string
+        type: string
       - name: id
         in: path
+        type: integer
         required: true
-        schema:
-          type: integer
       responses:
         '200':
           description: success
