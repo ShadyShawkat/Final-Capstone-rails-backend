@@ -17,7 +17,7 @@ class HotelsController < ApplicationController
 
   # POST /hotels
   def create
-    hotel = @current_user.hotels.new(hotel_params)
+    hotel = current_user.hotels.new(hotel_params)
 
     rooms = params[:rooms]
     rooms.each do |room|

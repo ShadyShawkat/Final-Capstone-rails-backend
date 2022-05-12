@@ -275,6 +275,12 @@ paths:
       responses:
         '200':
           description: success
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 servers:
 - url: http://{defaultHost}
   variables:
