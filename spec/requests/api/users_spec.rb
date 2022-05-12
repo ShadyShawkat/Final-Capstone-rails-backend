@@ -1,10 +1,16 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/users', type: :request do
+  before :each do
+    post '/auth/login', params: { email: 'admin@gmail.com', password: 'admin' }
+    @token = JSON.parse(response.body)['token']
+  end
+
   path '/users' do
     post 'creates an user successfully' do
       tags 'Users'
       consumes 'application/json'
+      produces 'application/json'
       parameter name: :user, in: :body, schema: {
         type: :object,
         properties: {
@@ -28,6 +34,7 @@ RSpec.describe 'api/users', type: :request do
     post 'logs in an existing user' do
       tags 'Users'
       consumes 'application/json'
+      produces 'application/json'
       parameter name: :user, in: :body, schema: {
         type: :object,
         properties: {
@@ -49,11 +56,13 @@ RSpec.describe 'api/users', type: :request do
       tags 'Users'
       consumes 'application/json'
       produces 'application/json'
-      security [bearer_auth: []]
-      parameter name: :Authorization, in: :header, type: :string
+      security [Bearer: {}]
+      parameter name: :Authorization, in: :header, type: :string, required: true, description: 'Client token'
       parameter name: :id, in: :path, type: :integer
 
       response(200, 'success') do
+        let(:Authorization) { 'Bearer ' + @token }
+        let(:id) { 1 }
         run_test!
       end
     end

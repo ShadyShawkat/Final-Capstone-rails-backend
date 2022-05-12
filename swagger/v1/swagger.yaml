@@ -201,6 +201,8 @@ paths:
       - Users
       consumes:
       - application/json
+      produces:
+      - application/json
       parameters:
       - name: user
         in: body
@@ -231,6 +233,8 @@ paths:
       - Users
       consumes:
       - application/json
+      produces:
+      - application/json
       parameters:
       - name: user
         in: body
@@ -257,11 +261,13 @@ paths:
       produces:
       - application/json
       security:
-      - bearer_auth: []
+      - Bearer: {}
       parameters:
       - name: Authorization
         in: header
         type: string
+        required: true
+        description: Client token
       - name: id
         in: path
         type: integer
@@ -273,4 +279,4 @@ servers:
 - url: http://{defaultHost}
   variables:
     defaultHost:
-      default: 127.0.0.1:3000
+      default: https://microvago.herokuapp.com/
