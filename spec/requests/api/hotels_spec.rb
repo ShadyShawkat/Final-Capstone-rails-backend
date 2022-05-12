@@ -14,7 +14,7 @@ RSpec.describe 'api/hotels', type: :request do
       security [Bearer: {}]
       parameter name: :Authorization, in: :header, type: :string, required: true, description: 'Client token'
       response(200, 'successful') do
-        let(:Authorization) { 'Bearer ' + @token }
+        let(:Authorization) { "Bearer #{@token}" }
         run_test!
       end
     end
@@ -28,15 +28,15 @@ RSpec.describe 'api/hotels', type: :request do
       parameter name: :hotel, in: :body, schema: {
         type: :object,
         properties: { name: { type: :string }, description: { type: :text }, rating: { type: :integer },
-                      image: { type: :string }, location: { type: :string }, user_id: { type: :integer },rooms: { type: :multi } },
+                      image: { type: :string }, location: { type: :string }, user_id: { type: :integer }, rooms: { type: :multi } },
         required: %w[name description rating image location user_id]
       }
 
       response '201', 'hotel created' do
-        let(:Authorization) { 'Bearer ' + @token }
+        let(:Authorization) { "Bearer #{@token}" }
         let(:hotel) do
           { name: 'Hilto', description: 'Nice place.', rating: 5, image: 'Hilton hotel image', location: 'New York',
-            user_id: 2, rooms: [{id: 1, image: 'image', price: 1000}] }
+            user_id: 2, rooms: [{ id: 1, image: 'image', price: 1000 }] }
         end
         run_test!
       end
@@ -52,7 +52,7 @@ RSpec.describe 'api/hotels', type: :request do
       parameter name: :Authorization, in: :header, type: :string, required: true, description: 'Client token'
       parameter name: :id, in: :path, type: :integer
       response(200, 'successful') do
-        let(:Authorization) { 'Bearer ' + @token }
+        let(:Authorization) { "Bearer #{@token}" }
         let(:id) { 1 }
         run_test!
       end
@@ -66,7 +66,7 @@ RSpec.describe 'api/hotels', type: :request do
       parameter name: :Authorization, in: :header, type: :string, required: true, description: 'Client token'
       parameter name: :id, in: :path, type: :integer
       response(200, 'successful') do
-        let(:Authorization) { 'Bearer ' + @token }
+        let(:Authorization) { "Bearer #{@token}" }
         let(:id) { 1 }
         run_test!
       end

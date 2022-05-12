@@ -14,7 +14,7 @@ RSpec.describe 'api/reservations', type: :request do
       security [Bearer: {}]
       parameter name: :Authorization, in: :header, type: :string, required: true, description: 'Client token'
       response(200, 'successful') do
-        let(:Authorization) { 'Bearer ' + @token }
+        let(:Authorization) { "Bearer #{@token}" }
         run_test!
       end
     end
@@ -27,12 +27,13 @@ RSpec.describe 'api/reservations', type: :request do
       parameter name: :Authorization, in: :header, type: :string, required: true, description: 'Client token'
       parameter name: :reservation, in: :body, schema: {
         type: :object,
-        properties: { date: { type: :string, format: :datetime }, hotel_room_id: { type: :integer }, user_id: { type: :integer } },
+        properties: { date: { type: :string, format: :datetime }, hotel_room_id: { type: :integer },
+                      user_id: { type: :integer } },
         required: %w[date hotel_room_id]
       }
 
       response '201', 'reservation created' do
-        let(:Authorization) { 'Bearer ' + @token }
+        let(:Authorization) { "Bearer #{@token}" }
         let(:reservation) do
           { date: '2022-05-11', hotel_room_id: 2, user_id: '2' }
         end
@@ -50,7 +51,7 @@ RSpec.describe 'api/reservations', type: :request do
       parameter name: :Authorization, in: :header, type: :string, required: true, description: 'Client token'
       parameter name: :id, in: :path, type: :integer
       response(200, 'successful') do
-        let(:Authorization) { 'Bearer ' + @token }
+        let(:Authorization) { "Bearer #{@token}" }
         let(:id) { 1 }
         run_test!
       end

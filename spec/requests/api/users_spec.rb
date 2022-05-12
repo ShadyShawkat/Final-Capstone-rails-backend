@@ -41,7 +41,7 @@ RSpec.describe 'api/users', type: :request do
           email: { type: :string },
           password: { type: :string }
         },
-        required: [ 'email', 'password' ]
+        required: %w[email password]
       }
 
       response '200', 'user logged in' do
@@ -61,7 +61,7 @@ RSpec.describe 'api/users', type: :request do
       parameter name: :id, in: :path, type: :integer
 
       response(200, 'success') do
-        let(:Authorization) { 'Bearer ' + @token }
+        let(:Authorization) { "Bearer #{@token}" }
         let(:id) { 1 }
         run_test!
       end
