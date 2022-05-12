@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   # DELETE /users/:id
   def destroy
     @user.destroy
-    head :no_content
+    render json: 'User Deleted successfully', status: :ok
   end
 
   private
