@@ -3,10 +3,10 @@ class HotelRoomSerializer < ActiveModel::Serializer
   attributes :id, :price, :featured_room_image, :room
 
   def featured_room_image
-    if object.featured_room_image.attached?
-      {
-        url: rails_blob_url(object.featured_room_image, only_path: true)
-      }
-    end
+    return unless object.featured_room_image.attached?
+
+    {
+      url: rails_blob_url(object.featured_room_image, only_path: true)
+    }
   end
 end
