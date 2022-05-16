@@ -1,3 +1,5 @@
+require 'json'
+
 class HotelsController < ApplicationController
   before_action :set_hotel, only: %i[show destroy]
   before_action :hotel_params, only: %i[create]
@@ -11,8 +13,7 @@ class HotelsController < ApplicationController
 
   # GET /hotels/id
   def show
-    render json: Hotel.includes(hotel_rooms: [:room]).find(@hotel.id)
-      .as_json(include: { hotel_rooms: { include: :room } })
+    render json: Hotel.find(@hotel.id)
   end
 
   # POST /hotels
@@ -20,10 +21,10 @@ class HotelsController < ApplicationController
     hotel = @current_user.hotels.new(hotel_params)
 
     rooms = params[:rooms]
-    rooms.each do |room|
-      if Room.find(room['id'])
-        hotel.hotel_rooms.new(room_id: room['id'], image: room['image'],
-                              price: room['price'])
+    rooms.each do |id, room_details|
+      if Room.find(id)
+        hotel.hotel_rooms.new(room_id: id, featured_room_image: room_details['featured_room_image'],
+                              price: room_details['price'])
       end
     end
 
@@ -53,6 +54,6 @@ class HotelsController < ApplicationController
   end
 
   def rooms_params
-    params.permit(rooms: [])
+    params.permit(rooms: {})
   end
 end
