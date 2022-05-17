@@ -45,6 +45,11 @@ git@github.com:ShadyShawkat/Final-Capstone-rails-backend.git
 10. Run `rails s` to start the project's live server and take a look at the terminal to see the URL address it is running on.
 11. If you want to run some unit tests, all you need to do is run the `rspec` command on your terminal after [installing](https://github.com/rspec/rspec-rails) `rspec-rails`
 
+## Documentation
+
+- [Click here](https://microvago.herokuapp.com/api-docs/index.html) to see the documentation of our rails API.
+
+
 ## Authors
 
 👤 **Luis Abarca**
