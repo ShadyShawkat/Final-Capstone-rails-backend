@@ -8,14 +8,14 @@
 
 ![ERD](https://user-images.githubusercontent.com/34578631/167898748-3eb6b504-6823-4b3f-a4ce-b3dbc91c2fd3.png)
 
-## Kanban Board
+## Kanban Board :clipboard:
 To view the Kanban Board we built for this project please click [here](https://github.com/ShadyShawkat/Final-Capstone-rails-backend/projects/1).
 
 To view the issue with the Kanban Board screenshots please click [here](https://github.com/ShadyShawkat/Final-Capstone-rails-backend/issues/19).
 
 There were 5 contributors to this project, you can see their contact information in the Authors section of this document.
 
-## Built With
+## Built With :gear:
 - Ruby on Rails
 - Rubocop
 - Heroku
@@ -36,7 +36,7 @@ git clone https://github.com/ShadyShawkat/Final-Capstone-rails-backend.git
 ~~~
 OR
 ~~~bash
-git@github.com:ShadyShawkat/Final-Capstone-rails-backend.git
+git clone git@github.com:ShadyShawkat/Final-Capstone-rails-backend.git
 ~~~
 2. Open the project folder with VSCode or any Editor.
 3. Open terminal and navigate to the project folder.
@@ -59,7 +59,7 @@ git@github.com:ShadyShawkat/Final-Capstone-rails-backend.git
 ## Live Demo :iphone:
 To make requests to this API please click [here](https://microvago.herokuapp.com) and follow the API documentation.
 
-## Authors
+## Authors :busts_in_silhouette:
 
 👤 **Luis Abarca**
 
