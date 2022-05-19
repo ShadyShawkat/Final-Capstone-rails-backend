@@ -3,10 +3,17 @@
 
 > This is a Rails API app that is consumed by the Microvago web app to reserve hotel rooms all around the globe
 
-### Entity Relationship Diagram (ERD) of Microvago API
+### Microvago API Entity Relationship Diagram (ERD)
 
 
 ![ERD](https://user-images.githubusercontent.com/34578631/167898748-3eb6b504-6823-4b3f-a4ce-b3dbc91c2fd3.png)
+
+## Kanban Board
+To view the Kanban Board we built for this project please click [here](https://github.com/ShadyShawkat/Final-Capstone-rails-backend/projects/1).
+
+To view the issue with the Kanban Board screenshots please click [here](https://github.com/ShadyShawkat/Final-Capstone-rails-backend/issues/19).
+
+There were 5 contributors to this project, you can see their contact information in the Authors section of this document.
 
 ## Built With
 - Ruby on Rails
