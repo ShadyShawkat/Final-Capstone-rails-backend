@@ -1,7 +1,7 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 # Microvago API
 
-> This is a Rails API app that is consumed by the Microvago web app to reserve hotel rooms all around the globe
+> This is a Rails API app that is consumed by the [Microvago](https://microvago.netlify.app/) web app to reserve hotel rooms all around the globe
 
 ### Microvago API Entity Relationship Diagram (ERD)
 
